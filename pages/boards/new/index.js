@@ -24,6 +24,7 @@ import {
     ZipcodeWrapper
   } from "../../../styles/boardsNew";
 import { gql, useMutation } from "@apollo/client";
+import { useRouter } from "next/router";
 
 const CREATE_BOARD = gql`
   mutation createBoard($createBoardInput: CreateBoardInput!){
@@ -47,6 +48,8 @@ const CREATE_BOARD = gql`
 `
 
 export default function newBoard(){
+
+    const router = useRouter();
 
     const [writer, setWriter] = useState("");
     const [password, setPassword] = useState("");
@@ -102,19 +105,24 @@ export default function newBoard(){
             setContentsError("내용을 입력해주세요.");
           }
           if (writer && password && title && contents) {
-            const result = await createBoard({
-                variables: {
-                    createBoardInput: {
-                        writer: writer,
-                        password: password,
-                        title: title,
-                        contents: contents
+            try{
+                const result = await createBoard({
+                    variables: {
+                        createBoardInput: {
+                            writer: writer,
+                            password: password,
+                            title: title,
+                            contents: contents
+                        }
                     }
-                }
-            })
-
-            console.log(result);
-            alert("게시글이 등록되었습니다.");
+                })
+    
+                console.log(result);
+                alert("게시글이 등록되었습니다.");
+                router.push(`/boards/${result.data.createBoard._id}`)
+            } catch(error){
+                alert(error.message);
+            }
           }
     };
 
