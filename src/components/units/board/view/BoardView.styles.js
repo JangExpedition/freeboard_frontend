@@ -46,7 +46,7 @@ export const Body = styled.div`
     min-height: 800px;
 `;
 
-export const Title = styled.h1`
+export const Title = styled.div`
     padding-top: 80px;
 `;
 
