@@ -1,7 +1,7 @@
 import BoardViewUI from "./BoardView.presenter"
 import { useRouter } from "next/router"
-import { useQuery } from "@apollo/client"
-import { FETCH_BOARD } from "./BoardView.queries";
+import { useMutation, useQuery } from "@apollo/client"
+import { FETCH_BOARD, DELETE_BOARD } from "./BoardView.queries";
 
 export default function BoardView(){
 
@@ -11,10 +11,21 @@ export default function BoardView(){
             boardId: router.query.boardId
         }
     }) 
+    const [deleteBoard] = useMutation(DELETE_BOARD);
+    const onClickDelete = (event) => {
+        deleteBoard({
+            variables: {
+                boardId: event.target.id
+            }
+        })
+    }
 
     console.log(data);
 
     return(
-        <BoardViewUI data={data}/>
+        <BoardViewUI 
+            data={data}
+            onClickDelete={onClickDelete}
+        />
     )
 }

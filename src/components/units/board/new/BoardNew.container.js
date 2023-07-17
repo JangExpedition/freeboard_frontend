@@ -7,6 +7,8 @@ import { useState } from "react";
 export default function BoardNew(){
     const router = useRouter();
 
+    const [isActive, setIsActive] = useState(false);
+
     const [writer, setWriter] = useState("");
     const [password, setPassword] = useState("");
     const [title, setTitle] = useState("");
@@ -22,7 +24,13 @@ export default function BoardNew(){
     function onChangeWriter(event){
         setWriter(event.target.value);
         if(event.target.value !== ""){
-        setWriterError("")
+          setWriterError("")
+        }
+
+        if(event.target.value && password && title && contents){
+          setIsActive(true);
+        }else{
+          setIsActive(false)
         }
     };
 
@@ -31,6 +39,12 @@ export default function BoardNew(){
         if(event.target.value !== ""){
           setPasswordError("")
         }
+
+        if(writer && event.target.value && title && contents){
+          setIsActive(true);
+        }else{
+          setIsActive(false)
+        }
     };
 
     function onChangeTitle(event){
@@ -38,12 +52,24 @@ export default function BoardNew(){
         if(event.target.value !== ""){
           setTitleError("")
         }
+
+        if(writer && password && event.target.value && contents){
+          setIsActive(true);
+        }else{
+          setIsActive(false)
+        }
     };
 
     function onChangeContents(event){
         setContents(event.target.value);
         if(event.target.value !== ""){
           setContentsError("")
+        }
+
+        if(writer && password && title && event.target.value){
+          setIsActive(true);
+        }else{
+          setIsActive(false)
         }
     };
 
@@ -93,6 +119,7 @@ export default function BoardNew(){
             onChangeTitle={onChangeTitle}
             onChangeContents={onChangeContents}
             onClickSubmit={onClickSubmit}
+            isActive={isActive}
             />
     )
 }
