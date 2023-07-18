@@ -27,27 +27,33 @@ export default function BoardNewUI(props){
 
     return(
         <Wrapper>
-            <Title>게시물등록</Title>
+            <Title>게시글{props.isEdit ? "수정" : "등록"}</Title>
             <WriterWrapper>
                 <InputWrapper>
                     <Label>작성자</Label>
-                    <Writer type="text" placeholder="이름을 적어주세요." onChange={props.onChangeWriter}></Writer>
+                    <Writer 
+                        type="text" 
+                        placeholder="이름을 적어주세요." 
+                        onChange={props.onChangeWriter} 
+                        defaultValue={props.data?.fetchBoard.writer}
+                        readOnly={props.data?.fetchBoard.writer}    
+                    />
                     <Error>{props.writerError}</Error>
                 </InputWrapper>
                 <InputWrapper>
                     <Label>비밀번호</Label>
-                    <Password type="password" placeholder="비밀번호를 입력해주세요." onChange={props.onChangePassword}></Password>
+                    <Password type="password" placeholder="비밀번호를 입력해주세요." onChange={props.onChangePassword} ></Password>
                     <Error>{props.passwordError}</Error>
                 </InputWrapper>
             </WriterWrapper>
             <InputWrapper>
                 <Label>제목</Label>
-                <Subject type="text" placeholder="제목을 작성해주세요." onChange={props.onChangeTitle}></Subject>
+                <Subject type="text" placeholder="제목을 작성해주세요." onChange={props.onChangeTitle} defaultValue={props.data?.fetchBoard.title}></Subject>
                 <Error>{props.titleError}</Error>
             </InputWrapper>
             <InputWrapper>
                 <Label>내용</Label>
-                <Contents placeholder="내용을 작성해주세요." onChange={props.onChangeContents}></Contents>
+                <Contents placeholder="내용을 작성해주세요." onChange={props.onChangeContents} defaultValue={props.data?.fetchBoard.contents}></Contents>
                 <Error>{props.contentsError}</Error>
             </InputWrapper>
             <InputWrapper>
@@ -77,7 +83,7 @@ export default function BoardNewUI(props){
                 <RadioLabel htmlFor="image">사진</RadioLabel>
             </OptionWrapper>
             <ButtonWrapper>
-                <SubmitButton isActive={props.isActive} onClick={props.onClickSubmit}>등록하기</SubmitButton>
+                <SubmitButton isActive={props.isEdit ? true : props.isActive} onClick={props.isEdit ? props.onClickUpdate : props.onClickSubmit}>{props.isEdit ? "수정" : "등록"}하기</SubmitButton>
             </ButtonWrapper>
         </Wrapper>
     )

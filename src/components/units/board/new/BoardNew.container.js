@@ -1,10 +1,10 @@
 import BoardNewUI from "./BoardNew.presenter"
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
-import { CREATE_BOARD } from "./BoardNew.queries"
+import { CREATE_BOARD, UPDATE_BOARD } from "./BoardNew.queries"
 import { useState } from "react";
 
-export default function BoardNew(){
+export default function BoardNew(props){
     const router = useRouter();
 
     const [isActive, setIsActive] = useState(false);
@@ -20,6 +20,7 @@ export default function BoardNew(){
     const[contentsError, setContentsError] = useState("");
 
     const [createBoard] = useMutation(CREATE_BOARD);
+    const [updateBoard] = useMutation(UPDATE_BOARD);
 
     function onChangeWriter(event){
         setWriter(event.target.value);
@@ -108,6 +109,39 @@ export default function BoardNew(){
           }
     };
 
+    const onClickUpdate = async () => {
+      if(!title && !contents){
+        alert("수정한 내용이 없습니다.");
+        return;
+      }
+
+      if(!password){
+        alert("비밀번호를 입력해주세요.")
+        return;
+      }
+
+      const updateBoardInput = {};
+      if(title){
+        updateBoardInput.title = title;
+      }
+      if(contents){
+        updateBoardInput.contents = contents;
+      }
+
+      try {
+        const result = await updateBoard({
+          variables: {
+            boardId: router.query.boardId,
+            password,
+            updateBoardInput
+          },
+        })
+        router.push(`/boards/${result.data.updateBoard._id}`)
+      } catch(error) {
+        alert(error.message)
+      }
+    };
+
     return(
         <BoardNewUI 
             writerError={writerError}
@@ -119,7 +153,10 @@ export default function BoardNew(){
             onChangeTitle={onChangeTitle}
             onChangeContents={onChangeContents}
             onClickSubmit={onClickSubmit}
+            onClickUpdate={onClickUpdate}
             isActive={isActive}
+            isEdit={props.isEdit}
+            data={props.data}
             />
     )
 }

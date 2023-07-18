@@ -22,8 +22,8 @@ export default function BoardViewUI(props){
                 </Body>
             </CardWrapper>
         <BottomWrapper>
-          <Button>목록으로</Button>
-          <Button>수정하기</Button>
+          <Button onClick={props.onClickMoveBoards}>목록으로</Button>
+          <Button onClick={props.onClickMoveBoardUpdate}>수정하기</Button>
           <Button id={props.data?.fetchBoard?._id} onClick={props.onClickDelete}>삭제하기</Button>
         </BottomWrapper>
         </Wrapper>

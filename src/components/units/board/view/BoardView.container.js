@@ -20,12 +20,20 @@ export default function BoardView(){
         })
     }
 
-    console.log(data);
+    const onClickMoveBoardUpdate = () => {
+        router.push(`${router.query.boardId}/edit`)
+    }
 
+    const onClickMoveBoards = () => {
+        router.push("../boards")
+    }
+    
     return(
         <BoardViewUI 
-            data={data}
             onClickDelete={onClickDelete}
+            onClickMoveBoardUpdate={onClickMoveBoardUpdate}
+            onClickMoveBoards={onClickMoveBoards}
+            data={data}
         />
     )
 }
