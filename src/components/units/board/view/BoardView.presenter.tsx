@@ -1,6 +1,7 @@
 import { Avatar, AvatarWrapper, Body, BottomWrapper, Button, CardWrapper, Contents, CreatedAt, Header, Info, Title, Wrapper, Writer } from "./BoardView.styles";
+import { BoardViewUIProps } from "./BoardView.types";
 
-export default function BoardViewUI(props){
+export default function BoardViewUI(props: BoardViewUIProps){
     
     return(
         <Wrapper>

@@ -1,7 +1,8 @@
 import { getDate } from "../../../../commons/libraries/utils";
 import * as S from "./BoardList.styles";
+import { IBoardUIProps } from "./BoardList.types";
 
-export default function BoardListUI(props){
+export default function BoardListUI(props: IBoardUIProps){
 
     return(
         <S.Wrapper>

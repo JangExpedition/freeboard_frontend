@@ -22,8 +22,9 @@ import {
     Zipcode,
     ZipcodeWrapper
   } from "./BoardNew.styles";
+import { BoardNewUIProps } from "./BoardNew.types";
 
-export default function BoardNewUI(props){
+export default function BoardNewUI(props: BoardNewUIProps){
 
     return(
         <Wrapper>
@@ -35,8 +36,8 @@ export default function BoardNewUI(props){
                         type="text" 
                         placeholder="이름을 적어주세요." 
                         onChange={props.onChangeWriter} 
-                        defaultValue={props.data?.fetchBoard.writer}
-                        readOnly={props.data?.fetchBoard.writer}    
+                        defaultValue={props.data?.fetchBoard.writer ?? ""}
+                        readOnly={!!props.data?.fetchBoard.writer}    
                     />
                     <Error>{props.writerError}</Error>
                 </InputWrapper>

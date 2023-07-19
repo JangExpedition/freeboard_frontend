@@ -2,9 +2,11 @@ import BoardNewUI from "./BoardNew.presenter"
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { CREATE_BOARD, UPDATE_BOARD } from "./BoardNew.queries"
-import { useState } from "react";
+import { useState, ChangeEvent } from "react";
+import { IMutation, IMutationCreateBoardArgs, IMutationUpdateBoardArgs, IUpdateBoardInput } from "../../../../commons/types/generated/types";
+import { IBoardNewProps } from "./BoardNew.types";
 
-export default function BoardNew(props){
+export default function BoardNew(props: IBoardNewProps){
     const router = useRouter();
 
     const [isActive, setIsActive] = useState(false);
@@ -19,10 +21,10 @@ export default function BoardNew(props){
     const[titleError, setTitleError] = useState("");
     const[contentsError, setContentsError] = useState("");
 
-    const [createBoard] = useMutation(CREATE_BOARD);
-    const [updateBoard] = useMutation(UPDATE_BOARD);
+    const [createBoard] = useMutation<Pick<IMutation, "createBoard">, IMutationCreateBoardArgs>(CREATE_BOARD);
+    const [updateBoard] = useMutation<Pick<IMutation, "updateBoard">, IMutationUpdateBoardArgs>(UPDATE_BOARD);
 
-    function onChangeWriter(event){
+    function onChangeWriter(event: ChangeEvent<HTMLInputElement>){
         setWriter(event.target.value);
         if(event.target.value !== ""){
           setWriterError("")
@@ -35,7 +37,7 @@ export default function BoardNew(props){
         }
     };
 
-    function onChangePassword(event){
+    function onChangePassword(event: ChangeEvent<HTMLInputElement>){
         setPassword(event.target.value);
         if(event.target.value !== ""){
           setPasswordError("")
@@ -48,7 +50,7 @@ export default function BoardNew(props){
         }
     };
 
-    function onChangeTitle(event){
+    function onChangeTitle(event: ChangeEvent<HTMLInputElement>){
         setTitle(event.target.value);
         if(event.target.value !== ""){
           setTitleError("")
@@ -61,7 +63,7 @@ export default function BoardNew(props){
         }
     };
 
-    function onChangeContents(event){
+    function onChangeContents(event: ChangeEvent<HTMLTextAreaElement>){
         setContents(event.target.value);
         if(event.target.value !== ""){
           setContentsError("")
@@ -102,9 +104,11 @@ export default function BoardNew(props){
     
                 console.log(result);
                 alert("게시글이 등록되었습니다.");
-                router.push(`/boards/${result.data.createBoard._id}`)
+                router.push(`/boards/${result.data?.createBoard._id}`)
             } catch(error){
+              if(error instanceof Error){
                 alert(error.message);
+              }
             }
           }
     };
@@ -120,7 +124,7 @@ export default function BoardNew(props){
         return;
       }
 
-      const updateBoardInput = {};
+      const updateBoardInput: IUpdateBoardInput = {};
       if(title){
         updateBoardInput.title = title;
       }
@@ -129,6 +133,10 @@ export default function BoardNew(props){
       }
 
       try {
+        if(typeof router.query.boardId !== "string") {
+          alert("시스템에 문제가 있습니다.")
+          return;
+        }
         const result = await updateBoard({
           variables: {
             boardId: router.query.boardId,
@@ -136,9 +144,11 @@ export default function BoardNew(props){
             updateBoardInput
           },
         })
-        router.push(`/boards/${result.data.updateBoard._id}`)
+        router.push(`/boards/${result.data?.updateBoard._id}`)
       } catch(error) {
-        alert(error.message)
+        if(error instanceof Error){
+          alert(error.message)
+        }
       }
     };
 
