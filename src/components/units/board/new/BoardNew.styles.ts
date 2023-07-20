@@ -1,42 +1,42 @@
-import styled from '@emotion/styled';
-import { ISubmitButtonProps } from './BoardNew.types';
+import styled from "@emotion/styled";
+import type { ISubmitButtonProps } from "./BoardNew.types";
 
 export const Title = styled.div`
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 34px;
-    font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 34px;
+  font-weight: bold;
 `;
 
 export const Wrapper = styled.div`
-    width: 1200px;
-    margin: 100px;
-    padding: 80px 102px 100px 102px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: none;
-    box-shadow: 0px 0px 10px gray;
+  width: 1200px;
+  margin: 100px;
+  padding: 80px 102px 100px 102px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: none;
+  box-shadow: 0px 0px 10px gray;
 `;
 
 export const WriterWrapper = styled.div`
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding-top: 40px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 40px;
 `;
 
 export const Writer = styled.input`
-    width: 486px;
-    height: 52px;
-    padding-left: 16px;
-    border: 1px solid #bdbdbd;
+  width: 486px;
+  height: 52px;
+  padding-left: 16px;
+  border: 1px solid #bdbdbd;
 `;
 
 export const Password = styled.input`
-    width: 486px;
-    height: 52px;
-    padding-left: 16px;
-    border: 1px solid #bdbdbd;
+  width: 486px;
+  height: 52px;
+  padding-left: 16px;
+  border: 1px solid #bdbdbd;
 `;
 
 export const Label = styled.div`
@@ -46,120 +46,121 @@ export const Label = styled.div`
 `;
 
 export const InputWrapper = styled.div`
-    padding-top: 40px;
+  padding-top: 40px;
 `;
 
 export const Subject = styled.input`
-   width: 996px;
-   height: 52px;
-   padding-left: 16px;
-   border: 1px solid #bdbdbd;
+  width: 996px;
+  height: 52px;
+  padding-left: 16px;
+  border: 1px solid #bdbdbd;
 `;
-    
+
 export const Contents = styled.textarea`
-    width: 996px;
-    height: 480px;
-    padding-left: 16px;
-    padding: 14px;
-    border: 1px solid #bdbdbd;
+  width: 996px;
+  height: 480px;
+  padding-left: 16px;
+  padding: 14px;
+  border: 1px solid #bdbdbd;
 `;
 
 export const ZipcodeWrapper = styled.div`
-    display: flex;
+  display: flex;
 `;
 
 export const Zipcode = styled.input`
-    width: 77px;
-    height: 52px;
-    padding-left: 16px;
-    border: 1px solid #bdbdbd;
+  width: 77px;
+  height: 52px;
+  padding-left: 16px;
+  border: 1px solid #bdbdbd;
 `;
 
 export const SearchButton = styled.button`
-    width: 124px;
-    height: 52px;
-    margin-left: 16px;
-    background-color: #000;
-    cursor: pointer;
-    color: #fff;
+  width: 124px;
+  height: 52px;
+  margin-left: 16px;
+  background-color: #000;
+  cursor: pointer;
+  color: #fff;
 `;
 
 export const Address = styled.input`
-    width: 996px;
-    height: 52px;
-    margin-top: 16px;
-    padding-left: 16p;
-    border: 1px solid #bdbdbd;
+  width: 996px;
+  height: 52px;
+  margin-top: 16px;
+  padding-left: 16p;
+  border: 1px solid #bdbdbd;
 `;
 
 export const Youtube = styled.input`
-    width: 996px;
-    height: 52px;
-    padding-left: 16px;
-    border: 1px solid #bdbdbd;
+  width: 996px;
+  height: 52px;
+  padding-left: 16px;
+  border: 1px solid #bdbdbd;
 `;
 
 export const ImageWrapper = styled.div`
-    width: 996px;
-    padding-top: 40px;
+  width: 996px;
+  padding-top: 40px;
 `;
 
 export const UploadButton = styled.button`
-    width: 78px;
-    height: 78px;
-    background-color: #bdbdbd;
-    margin-right: 24px;
-    outline: none;
-    border: none;
-    cursor: pointer;
+  width: 78px;
+  height: 78px;
+  background-color: #bdbdbd;
+  margin-right: 24px;
+  outline: none;
+  border: none;
+  cursor: pointer;
 `;
 
 export const OptionWrapper = styled.div`
-    width: 996px;
-    padding-top: 40px;
+  width: 996px;
+  padding-top: 40px;
 `;
 
 export const RadioButton = styled.input`
-    cursor: pointer;
+  cursor: pointer;
 `;
 
 export const RadioLabel = styled.label`
-    margin-left: 8px;
-    margin-right: 20px;
-    front-weight: 500;
-    cursor: pointer;
+  margin-left: 8px;
+  margin-right: 20px;
+  front-weight: 500;
+  cursor: pointer;
 `;
 
 export const ButtonWrapper = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    padding-top: 80px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-top: 80px;
 `;
 
 export const CancelButton = styled.button`
-    width: 179px;
-    height: 52px;
-    background-color: #bdbdbd;
-    border: none;
-    font-size: 16px;
-    font-weight: 500;
-    margin-left: 12px;
-    margin-right: 12px;
-    cursor: pointer;
-`
+  width: 179px;
+  height: 52px;
+  background-color: #bdbdbd;
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
+  margin-left: 12px;
+  margin-right: 12px;
+  cursor: pointer;
+`;
 
 export const SubmitButton = styled.button`
-    width: 179px;
-    height: 52px;
-    border: none;
-    font-size: 16px;
-    font-weight: 500;
-    margin: 0 12px;
-    cursor: pointer;
-    background-color: ${(props: ISubmitButtonProps) => props.isActive ? "yellow" : ""};
+  width: 179px;
+  height: 52px;
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0 12px;
+  cursor: pointer;
+  background-color: ${(props: ISubmitButtonProps) =>
+    props.isActive ? "yellow" : ""};
 `;
 
 export const Error = styled.div`
-    color: red;
+  color: red;
 `;
